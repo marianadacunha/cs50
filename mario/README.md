@@ -20,6 +20,7 @@ The program we’ll write will be called mario. And let’s allow the user to de
 
 $ ./mario
 Height: 8
+
        #</br>
       ##</br>
      ###</br>
@@ -33,6 +34,7 @@ Height: 8
 
 $ ./mario
 Height: 4
+
    #</br>
   ##</br>
  ###</br>
@@ -42,6 +44,7 @@ Height: 4
 
 $ ./mario
 Height: 2
+
  #</br>
 ##</br>
 
@@ -49,6 +52,7 @@ Height: 2
 
 $ ./mario
 Height: 1
+
 #</br>
 
 If the user doesn’t, in fact, input a positive integer between 1 and 8, inclusive, when prompted, the program should re-prompt the user until they cooperate:
@@ -59,6 +63,7 @@ Height: 0
 Height: 42
 Height: 50
 Height: 4
+
    #</br>
   ##</br>
  ###</br>
