@@ -12,10 +12,10 @@ The program we’ll write will be called mario. And let’s allow the user to de
 $ ./mario
 Height: 8
 
-       #
-      ##
-     ###
-    ####
+#</br>
+##</br>
+###</br>
+####</br>
    #####</br>
   ######</br>
  #######</br>
