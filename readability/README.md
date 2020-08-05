@@ -1,61 +1,21 @@
-# World 1-1
-Toward the end of World 1-1 in Nintendo’s Super Mario Brothers, Mario must ascend right-aligned pyramid of blocks, a la the below.
+# Readability
 
-![Screenshot of Mario jumping up a right-aligned pyramid](https://cs50.harvard.edu/x/2020/psets/1/mario/less/pyramid.png)
+According to Scholastic, E.B. White’s “Charlotte’s Web” is between a second and fourth grade reading level, and Lois Lowry’s “The Giver” is between an eighth grade reading level and a twelfth grade reading level. What does it mean, though, for a book to be at a “fourth grade reading level”?
 
-Let’s recreate that pyramid in C, albeit in text, using hashes (#) for bricks. Each hash is a bit taller than it is wide, so the pyramid itself is also be taller than it is wide.
+Well, in many cases, a human expert might read a book and make a decision on the grade for which they think the book is most appropriate. But you could also imagine an algorithm attempting to figure out what the reading level of a text is.
 
-The program we’ll write will be called mario. And let’s allow the user to decide just how tall the pyramid should be by first prompting them for a positive integer between, say, 1 and 8, inclusive.
+So what sorts of traits are characteristic of higher reading levels? Well, longer words probably correlate with higher reading levels. Likewise, longer sentences probably correlate with higher reading levels, too. A number of “readability tests” have been developed over the years, to give a formulaic process for computing the reading level of a text.
 
-### Here’s how the program might work if the user inputs 8 when prompted:
+One such readability test is the Coleman-Liau index. The Coleman-Liau index of a text is designed to output what (U.S.) grade level is needed to understand the text. The formula is:
 
-$ ./mario</br>
-Height: 8
+> index = 0.0588 * L - 0.296 * S - 15.8
 
-#</br>
-##</br>
-###</br>
-####</br>
-   #####</br>
-  ######</br>
- #######</br>
-########</br>
+Here, L is the average number of letters per 100 words in the text, and S is the average number of sentences per 100 words in the text.
 
-### Here’s how the program might work if the user inputs 4 when prompted:
+Let’s write a program called readability that takes a text and determines its reading level. For example, if user types in a line from Dr. Seuss:
 
-$ ./mario</br>
-Height: 4
+> $ ./readability
+> Text: Congratulations! Today is your day. You're off to Great Places! You're off and away!
+> Grade 3
 
-   #</br>
-  ##</br>
- ###</br>
-####</br>
-
-### Here’s how the program might work if the user inputs 2 when prompted:
-
-$ ./mario</br>
-Height: 2
-
- #</br>
-##</br>
-
-### And here’s how the program might work if the user inputs 1 when prompted:
-
-$ ./mario</br>
-Height: 1
-
-#</br>
-
-If the user doesn’t, in fact, input a positive integer between 1 and 8, inclusive, when prompted, the program should re-prompt the user until they cooperate:
-
-$ ./mario</br>
-Height: -1</br>
-Height: 0</br>
-Height: 42</br>
-Height: 50</br>
-Height: 4
-
-   #</br>
-  ##</br>
- ###</br>
-####</br>
+The text the user inputted has 65 letters, 4 sentences, and 14 words. 65 letters per 14 words is an average of about 464.29 letters per 100 words. And 4 sentences per 14 words is an average of about 28.57 sentences per 100 words. Plugged into the Coleman-Liau formula, and rounded to the nearest whole number, we get an answer of 3: so this passage is at a third grade reading level.
