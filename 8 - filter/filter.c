@@ -1,213 +1,153 @@
-#include <cs50.h>
+#include <getopt.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-// Max voters and candidates
-#define MAX_VOTERS 100
-#define MAX_CANDIDATES 9
+#include "helpers.h"
 
-// preferences[i][j] is jth preference for voter i
-int preferences[MAX_VOTERS][MAX_CANDIDATES];
-
-// Candidates have name, vote count, eliminated status
-typedef struct
+int main(int argc, char *argv[])
 {
-    string name;
-    int votes;
-    bool eliminated;
-}
-candidate;
 
-// Array of candidates
-candidate candidates[MAX_CANDIDATES];
+    // Define allowable filters
+    char *filters = "bgrs";
 
-// Numbers of voters and candidates
-int voter_count;
-int candidate_count;
-
-// Function prototypes
-bool vote(int voter, int rank, string name);
-void tabulate(void);
-bool print_winner(void);
-int find_min(void);
-bool is_tie(int min);
-void eliminate(int min);
-
-int main(int argc, string argv[])
-{
-    // Check for invalid usage
-    if (argc < 2)
+    // Get filter flag and check validity
+    char filter = getopt(argc, argv, filters);
+    if (filter == '?')
     {
-        printf("Usage: runoff [candidate ...]\n");
+        fprintf(stderr, "Invalid filter.\n");
         return 1;
     }
 
-    // Populate array of candidates
-    candidate_count = argc - 1;
-    if (candidate_count > MAX_CANDIDATES)
+    // Ensure only one filter
+    if (getopt(argc, argv, filters) != -1)
     {
-        printf("Maximum number of candidates is %i\n", MAX_CANDIDATES);
+        fprintf(stderr, "Only one filter allowed.\n");
         return 2;
     }
-    for (int i = 0; i < candidate_count; i++)
-    {
-        candidates[i].name = argv[i + 1];
-        candidates[i].votes = 0;
-        candidates[i].eliminated = false;
-    }
 
-    voter_count = get_int("Number of voters: ");
-    if (voter_count > MAX_VOTERS)
+    // Ensure proper usage
+    if (argc != optind + 2)
     {
-        printf("Maximum number of voters is %i\n", MAX_VOTERS);
+        fprintf(stderr, "Usage: filter [flag] infile outfile\n");
         return 3;
     }
 
-    // Keep querying for votes
-    for (int i = 0; i < voter_count; i++)
+    // Remember filenames
+    char *infile = argv[optind];
+    char *outfile = argv[optind + 1];
+
+    // Open input file
+    FILE *inptr = fopen(infile, "r");
+    if (inptr == NULL)
     {
-
-        // Query for each rank
-        for (int j = 0; j < candidate_count; j++)
-        {
-            string name = get_string("Rank %i: ", j + 1);
-
-            // Record vote, unless it's invalid
-            if (!vote(i, j, name))
-            {
-                printf("Invalid vote.\n");
-                return 4;
-            }
-        }
-
-        printf("\n");
+        fprintf(stderr, "Could not open %s.\n", infile);
+        return 4;
     }
 
-    // Keep holding runoffs until winner exists
-    while (true)
+    // Open output file
+    FILE *outptr = fopen(outfile, "w");
+    if (outptr == NULL)
     {
-        // Calculate votes given remaining candidates
-        tabulate();
+        fclose(inptr);
+        fprintf(stderr, "Could not create %s.\n", outfile);
+        return 5;
+    }
 
-        // Check if election has been won
-        bool won = print_winner();
-        if (won)
-        {
+    // Read infile's BITMAPFILEHEADER
+    BITMAPFILEHEADER bf;
+    fread(&bf, sizeof(BITMAPFILEHEADER), 1, inptr);
+
+    // Read infile's BITMAPINFOHEADER
+    BITMAPINFOHEADER bi;
+    fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
+
+    // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
+    if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
+        bi.biBitCount != 24 || bi.biCompression != 0)
+    {
+        fclose(outptr);
+        fclose(inptr);
+        fprintf(stderr, "Unsupported file format.\n");
+        return 6;
+    }
+
+    int height = abs(bi.biHeight);
+    int width = bi.biWidth;
+
+    // Allocate memory for image
+    RGBTRIPLE(*image)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    if (image == NULL)
+    {
+        fprintf(stderr, "Not enough memory to store image.\n");
+        fclose(outptr);
+        fclose(inptr);
+        return 7;
+    }
+
+    // Determine padding for scanlines
+    int padding = (4 - (width * sizeof(RGBTRIPLE)) % 4) % 4;
+
+    // Iterate over infile's scanlines
+    for (int i = 0; i < height; i++)
+    {
+        // Read row into pixel array
+        fread(image[i], sizeof(RGBTRIPLE), width, inptr);
+
+        // Skip over padding
+        fseek(inptr, padding, SEEK_CUR);
+    }
+
+    // Filter image
+    switch (filter)
+    {
+        // Blur
+        case 'b':
+            blur(height, width, image);
             break;
-        }
 
-        // Eliminate last-place candidates
-        int min = find_min();
-        bool tie = is_tie(min);
-
-        // If tie, everyone wins
-        if (tie)
-        {
-            for (int i = 0; i < candidate_count; i++)
-            {
-                if (!candidates[i].eliminated)
-                {
-                    printf("%s\n", candidates[i].name);
-                }
-            }
+        // Grayscale
+        case 'g':
+            grayscale(height, width, image);
             break;
-        }
 
-        // Eliminate anyone with minimum number of votes
-        eliminate(min);
+        // Reflection
+        case 'r':
+            reflect(height, width, image);
+            break;
 
-        // Reset vote counts back to zero
-        for (int i = 0; i < candidate_count; i++)
+        // Sepia
+        case 's':
+            sepia(height, width, image);
+            break;
+    }
+
+    // Write outfile's BITMAPFILEHEADER
+    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
+
+    // Write outfile's BITMAPINFOHEADER
+    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
+
+    // Write new pixels to outfile
+    for (int i = 0; i < height; i++)
+    {
+        // Write row to outfile
+        fwrite(image[i], sizeof(RGBTRIPLE), width, outptr);
+
+        // Write padding at end of row
+        for (int k = 0; k < padding; k++)
         {
-            candidates[i].votes = 0;
+            fputc(0x00, outptr);
         }
     }
+
+    // Free memory for image
+    free(image);
+
+    // Close infile
+    fclose(inptr);
+
+    // Close outfile
+    fclose(outptr);
+
     return 0;
-}
-
-// Record preference if vote is valid
-bool vote(int voter, int rank, string name)
-{
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (strcmp(name, candidates[i].name) == 0)
-        {
-            preferences[voter][rank] = i;
-            return true;
-        }
-    }
-    return false;
-}
-
-// Tabulate votes for non-eliminated candidates
-void tabulate(void)
-{
-    for (int i = 0; i < voter_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            int candidate_index = preferences[i][j];
-            if (!candidates[candidate_index].eliminated)
-            {
-                candidates[candidate_index].votes++;
-                break;
-            }
-        }
-    }
-    return;
-}
-
-// Print the winner of the election, if there is one
-bool print_winner(void)
-{
-    int votesMajority = voter_count / 2;
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (candidates[i].votes > votesMajority)
-        {
-            printf("%s\n", candidates[i].name);
-            return true;
-        }
-    }
-    return false;
-}
-
-// Return the minimum number of votes any remaining candidate has
-int find_min(void)
-{
-    int minimumVotes = MAX_VOTERS;
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (candidates[i].votes < minimumVotes && !candidates[i].eliminated)
-        {
-            minimumVotes = candidates[i].votes;
-        }
-    }
-    return minimumVotes;
-}
-
-// Return true if the election is tied between all candidates, false otherwise
-bool is_tie(int min)
-{
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (candidates[i].votes != min && !candidates[i].eliminated)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-// Eliminate the candidate (or candidates) in last place
-void eliminate(int min)
-{
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (candidates[i].votes == min)
-        {
-            candidates[i].eliminated = true;
-        }
-    }
-    return;
 }
