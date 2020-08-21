@@ -13,11 +13,13 @@ Link to play the game that I created:
 
 #### Week 1: C
 Implementing a program that prompts the user for their name and then prints "Hello" + their actual name:
-* Hello, world!
+* <a href="https://github.com/marianadacunha/cs50/blob/master/1%20-%20hello/hello.c">Hello, world!</a>
+
 Implementing a program that recreates half-pyramid using hashes (#) for blocks:
-* Mario
+* <a href="https://github.com/marianadacunha/cs50/tree/master/2%20-%20mario">Mario</a>
+
 Implementing a greedy algorithim to minimize the number of coins you’re dispensing as change for each customer:
-* Cash
+* <a href="https://github.com/marianadacunha/cs50/tree/master/3%20-%20cash">Cash</a>
 
 #### Week 2: Arrays
 Implementing a program that encrypts messages using Caesar’s cipher, a simple encryption technique:
