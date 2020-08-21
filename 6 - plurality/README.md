@@ -10,7 +10,7 @@ Implement a program that runs a plurality election, per the below.
 > Vote: Alice</br>
 > Alice
 
-### Understanding
+# Understanding
 
 Let’s now take a look at *plurality.c* and read through the distribution code that’s been provided to you.
 
