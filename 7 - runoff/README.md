@@ -26,7 +26,7 @@ Implement a program that runs a runoff election, per the below.
 > </br>
 > Alice</br>
 
-### Background
+# Background
 You already know about plurality elections, which follow a very simple algorithm for determining the winner of an election: every voter gets one vote, and the candidate with the most votes wins.
 
 But the plurality vote does have some disadvantages. What happens, for instance, in an election with three candidates, and the ballots below are cast?
@@ -65,7 +65,7 @@ Some instant runoff elections don’t require voters to rank all of their prefer
 
 Sounds a bit more complicated than a plurality vote, doesn’t it? But it arguably has the benefit of being an election system where the winner of the election more accurately represents the preferences of the voters.
 
-### Understanding
+# Understanding
 
 Let’s open up runoff.c to take a look at what’s already there. We’re defining two constants: MAX_CANDIDATES for the maximum number of candidates in the election, and MAX_VOTERS for the maximum number of voters in the election.
 
