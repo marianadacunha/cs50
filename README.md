@@ -23,21 +23,24 @@ Implementing a greedy algorithim to minimize the number of coins you’re dispen
 
 #### Week 2: Arrays
 Implementing a program that encrypts messages using Caesar’s cipher, a simple encryption technique:
-* Caesar
+* <a href="https://github.com/marianadacunha/cs50/tree/master/5%20-%20caesar">Caesar</a>
+
 Implementing a program that computes the approximate grade level needed to comprehend some text:
-* Readability
+* <a href="https://github.com/marianadacunha/cs50/tree/master/4%20-%20readability">Readability</a>
 
 #### Week 3: Algorithms
 Implementing a program that runs a plurality election:
-* Plurality
+* <a href="https://github.com/marianadacunha/cs50/tree/master/6%20-%20plurality">Plurality</a>
+
 Implementing a program that runs a runoff election:
-* Runoff
+* <a href="https://github.com/marianadacunha/cs50/tree/master/7%20-%20runoff">Runoff</a>
 
 #### Week 4: Memory
 Implementing a program that that applies filters to BMPs, such as sepia, blur and grayscale.
-* Filter
+* <a href="https://github.com/marianadacunha/cs50/tree/master/8%20-%20filter">Filter</a>
+
 Implementing a program that recovers JPEGs from a forensic image.
-* Recover
+* <a href="https://github.com/marianadacunha/cs50/tree/master/9%20-%20recover">Recover</a>
 
 #### Week 5: Data Structures
 #### Week 6: Python
