@@ -43,6 +43,10 @@ Implementing a program that recovers JPEGs from a forensic image.
 * <a href="https://github.com/marianadacunha/cs50/tree/master/9%20-%20recover">Recover</a>
 
 ### Week 5: Data Structures
+
+Implementing a program that spell-checks a file, using a hash table.
+* <a href="https://github.com/marianadacunha/cs50/tree/master/10%20-%20speller">Speller</a>
+
 ### Week 6: Python
 ### Week 7: SQL
 ### Week 8: Information
