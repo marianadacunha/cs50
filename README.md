@@ -48,5 +48,14 @@ Implementing a program that spell-checks a file, using a hash table.
 * <a href="https://github.com/marianadacunha/cs50/tree/master/10%20-%20speller">Speller</a>
 
 ### Week 6: Python
+
+Re-doing previous C programs in Python.
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2011%20-%20python/01%20-%20hello">Hello</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2011%20-%20python/02%20-%20mario">Mario</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2011%20-%20python/03%20-%20cash">Cash</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2011%20-%20python/04%20-%20readability">Readability</a>
+
+Implementing a program that identifies a person based on their DNA.
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2011%20-%20python/05%20-%20dna">DNA</a>
 ### Week 7: SQL
 ### Week 8: Information
