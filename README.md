@@ -64,4 +64,3 @@ Writing SQL queries to answer questions about a database of movies.
 
 Implementing a program to import student data into a database, and then produce class rosters.
 * <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2012%20-%20sql/houses">Houses</a>
-### Week 8: Information
