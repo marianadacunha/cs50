@@ -13,39 +13,39 @@ Link to play the game that I created:
 
 ### Week 1: C
 Implementing a program that prompts the user for their name and then prints "Hello" + their actual name:
-* <a href="https://github.com/marianadacunha/cs50/blob/master/1%20-%20hello/hello.c">Hello, world!</a>
+* <a href="https://github.com/marianadacunha/cs50/blob/master/exercise%2001%20-%20hello/hello.c">Hello, world!</a>
 
 Implementing a program that recreates half-pyramid using hashes (#) for blocks:
-* <a href="https://github.com/marianadacunha/cs50/tree/master/2%20-%20mario">Mario</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2002%20-%20mario">Mario</a>
 
 Implementing a greedy algorithim to minimize the number of coins you’re dispensing as change for each customer:
-* <a href="https://github.com/marianadacunha/cs50/tree/master/3%20-%20cash">Cash</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2003%20-%20cash">Cash</a>
 
 ### Week 2: Arrays
 Implementing a program that encrypts messages using Caesar’s cipher, a simple encryption technique:
-* <a href="https://github.com/marianadacunha/cs50/tree/master/5%20-%20caesar">Caesar</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2005%20-%20caesar">Caesar</a>
 
 Implementing a program that computes the approximate grade level needed to comprehend some text:
-* <a href="https://github.com/marianadacunha/cs50/tree/master/4%20-%20readability">Readability</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2004%20-%20readability">Readability</a>
 
 ### Week 3: Algorithms
 Implementing a program that runs a plurality election:
-* <a href="https://github.com/marianadacunha/cs50/tree/master/6%20-%20plurality">Plurality</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2006%20-%20plurality">Plurality</a>
 
 Implementing a program that runs a runoff election:
-* <a href="https://github.com/marianadacunha/cs50/tree/master/7%20-%20runoff">Runoff</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2007%20-%20runoff">Runoff</a>
 
 ### Week 4: Memory
 Implementing a program that that applies filters to BMPs, such as sepia, blur and grayscale.
-* <a href="https://github.com/marianadacunha/cs50/tree/master/8%20-%20filter">Filter</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2008%20-%20filter">Filter</a>
 
 Implementing a program that recovers JPEGs from a forensic image.
-* <a href="https://github.com/marianadacunha/cs50/tree/master/9%20-%20recover">Recover</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2009%20-%20recover">Recover</a>
 
 ### Week 5: Data Structures
 
 Implementing a program that spell-checks a file, using a hash table.
-* <a href="https://github.com/marianadacunha/cs50/tree/master/10%20-%20speller">Speller</a>
+* <a href="https://github.com/marianadacunha/cs50/tree/master/exercise%2010%20-%20speller">Speller</a>
 
 ### Week 6: Python
 
