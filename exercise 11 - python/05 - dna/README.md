@@ -1,10 +1,10 @@
 # DNA
 
 Implement a program that identifies a person based on their DNA, per the below.
-
-> $ python dna.py databases/large.csv sequences/5.txt</br>
-> Lavender</br>
-
+```
+ $ python dna.py databases/large.csv sequences/5.txt
+ Lavender
+```
 # Background
 
 DNA, the carrier of genetic information in living things, has been used in criminal justice for decades. But how, exactly, does DNA profiling work? Given a sequence of DNA, how can forensic investigators identify to whom it belongs?
