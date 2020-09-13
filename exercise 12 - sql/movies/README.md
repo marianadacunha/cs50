@@ -64,5 +64,6 @@ You’re welcome to check your queries’ results against IMDb itself, but reali
 To test your queries on CS50 IDE, you can query the database by running
 ```
  $ cat filename.sql | sqlite3 movies.db
- where filename.sql is the file containing your SQL query.
 ```
+where filename.sql is the file containing your SQL query.
+
