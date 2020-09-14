@@ -2,7 +2,7 @@
 
 Implement a program that applies filters to BMPs, per the below.
 
-> $ ./filter -r image.bmp reflected.bmp</br>
+``` $ ./filter -r image.bmp reflected.bmp```
 
 # Background
 
@@ -55,11 +55,11 @@ Most image editing programs support a “sepia” filter, which gives images an 
 An image can be converted to sepia by taking each pixel, and computing new red, green, and blue values based on the original values of the three.
 
 There are a number of algorithms for converting an image to sepia, but for this problem, we’ll ask you to use the following algorithm. For each pixel, the sepia color values should be calculated based on the original color values per the below.
-
->  sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue</br>
->  sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue</br>
->  sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue</br>
-
+```
+  sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue
+  sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue
+  sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue
+```
 Of course, the result of each of these formulas may not be an integer, but each value could be rounded to the nearest integer. It’s also possible that the result of the formula is a number greater than 255, the maximum value for an 8-bit color value. In that case, the red, green, and blue values should be capped at 255. As a result, we can guarantee that the resulting red, green, and blue values will be whole numbers between 0 and 255, inclusive.
 
 ### Reflection
