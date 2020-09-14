@@ -1,20 +1,20 @@
 # Plurality
 
 Implement a program that runs a plurality election, per the below.
-
-> $ ./plurality Alice Bob Charlie</br>
-> Number of voters: 4</br>
-> Vote: Alice</br>
-> Vote: Bob</br>
-> Vote: Charlie</br>
-> Vote: Alice</br>
-> Alice
-
+```
+ $ ./plurality Alice Bob Charlie
+ Number of voters: 4
+ Vote: Alice
+ Vote: Bob
+ Vote: Charlie
+ Vote: Alice
+ Alice
+```
 # Understanding
 
 Let’s now take a look at *plurality.c* and read through the distribution code that’s been provided to you.
 
-The line *#define MAX 9* is some syntax used here to mean that MAX is a constant (equal to 9) that can be used throughout the program. Here, it represents the maximum number of candidates an election can have.
+The line ```#define MAX 9``` is some syntax used here to mean that MAX is a constant (equal to 9) that can be used throughout the program. Here, it represents the maximum number of candidates an election can have.
 
 The file then defines a struct called a candidate. Each candidate has two fields: a string called name representing the candidate’s name, and an int called votes representing the number of votes the candidate has. Next, the file defines a global array of candidates, where each element is itself a candidate.
 
