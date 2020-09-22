@@ -1,5 +1,5 @@
 # General Info
-The CS50 is a course that teaches students how to think algorithmically and solve problems efficiently. Topics include abstraction, algorithms, data structures, encapsulation, resource management, security, and software engineering. Languages include C, Python, and SQL plus students’ choice of: HTML, CSS, and JavaScript (for web development); Java or Swift (for mobile app development); or Lua (for game development). 
+CS50 is a course that teaches students how to think algorithmically and solve problems efficiently. Topics include abstraction, algorithms, data structures, encapsulation, resource management, security, and software engineering. Languages include C, Python, and SQL plus students’ choice of: HTML, CSS, and JavaScript (for web development); Java or Swift (for mobile app development); or Lua (for game development). 
 
 Problem sets inspired by the arts, humanities, social sciences, and sciences. Course culminates in a final project. Designed for concentrators and non-concentrators alike, with or without prior programming experience. Among the overarching goals of this course are to inspire students to explore unfamiliar waters, without fear of failure, create an intensive, shared experience, accessible to all students, and build community among students.
 
@@ -69,3 +69,6 @@ Implementing a program to import student data into a database, and then produce 
 
 Build a simple homepage using HTML, CSS, and JavaScript.
 * <a href="https://github.com/marianadacunha/a-hamburger-place">Homepage</a>
+
+Implement a website via which users can “buy” and “sell” stocks.
+* <a href="https://github.com/marianadacunha/my-stocks">CS50 Finance</a>
