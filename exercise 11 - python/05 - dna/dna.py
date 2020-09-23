@@ -65,6 +65,7 @@ def main():
 def count(givenSequence, individualSequence):
     # Making a raw f-string literal
     p = rf'({givenSequence})\1*'
+    # Compiling the regular expression above
     pattern = re.compile(p)
     match = [match for match in pattern.finditer(individualSequence)]
     maxSequence = 0
